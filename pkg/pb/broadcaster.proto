@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package broadcaster;
+
+option go_package = "./pkg/pb";
+
+import "google/protobuf/any.proto";
+
+service BroadcasterService {
+    rpc SendMessage(Payload) returns (stream SendResult) {}
+}
+
+message Payload {
+
+    message Headers {
+        optional google.protobuf.Any metadata = 1;    
+    }
+
+    Headers headers = 1;
+    google.protobuf.Any data = 2;
+    string action = 3;
+}
+
+message SendResult {
+    string identifier = 1;
+    bool sended = 2;
+    optional string errorMessage = 3;
+}
