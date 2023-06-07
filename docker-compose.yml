@@ -7,10 +7,21 @@ services:
     image: grpc_rabbitmq_server:1.0.0
     build: 
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./.gitpod.Dockerfile
     command: go run main.go
     ports:
       - "8080:80"
+    depends_on:
+      - rabbit
 
   rabbit:
-    image: rabbitmq:management-alpine
+    image: rabbitmq
+    command: rabbitmq-server
+    expose:
+      - 5672
+      - 15672
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      interval: 5s
+      timeout: 15s
+      retries: 1
