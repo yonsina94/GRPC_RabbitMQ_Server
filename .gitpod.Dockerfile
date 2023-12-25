@@ -15,9 +15,14 @@ RUN apt-get update && \
 # Switch to the gitpod user
 USER gitpod
 
-# Install Homebrew in the home directory
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" \
-    && echo 'export PATH="/home/gitpod/.linuxbrew/bin:$PATH"' >> /home/gitpod/.bashrc
+# Set Homebrew prefix to user's home directory
+ENV HOMEBREW_PREFIX="/home/gitpod/.linuxbrew"
+
+# Install Homebrew
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+# Set up environment variables
+ENV PATH="/home/gitpod/.linuxbrew/bin:${PATH}"
 
 # Perform Homebrew update and doctor checks
 RUN brew update
