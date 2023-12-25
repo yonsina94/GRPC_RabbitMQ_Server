@@ -4,9 +4,7 @@ services:
 
   server:
     container_name: grpc_rabbitmq_server
-    image: grpc_rabbitmq_server:1.0.0
-    build: 
-      image: gitpod/workspace-full
+    image: gitpod/workspace-full
     command: go run main.go
     ports:
       - "8080:80"
