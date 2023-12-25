@@ -15,7 +15,7 @@ RUN apt-get update && \
 # Switch to the gitpod user
 USER gitpod
 
-# Install Homebrew
+# Install Homebrew in the home directory
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # Set up environment variables
