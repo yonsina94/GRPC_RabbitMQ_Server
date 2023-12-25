@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package broadcaster;
 
-option go_package = "./pkg/pb";
+option go_package = "github.com/yonsina94/GRPC_RabbitMQ_Server/pkg/pb";
 
 import "google/protobuf/any.proto";
 

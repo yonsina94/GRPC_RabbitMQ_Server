@@ -44,7 +44,7 @@ func (svc *BroadcastService) SendMessage(payload *pb.Payload, srv pb.Broadcaster
             }
 
 
-			err = svc.cli.Publish(payload.Action,data)
+			err = svc.cli.Publish(payload.Action,data,srv.Context())
 			if err != nil {
 				e := err.Error()
 				resp = pb.SendResult {Identifier: "", Sended: false, ErrorMessage: &e}
