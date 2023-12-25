@@ -1,2 +1,17 @@
-image:
-  file: .gitpod.Dockerfile
+tasks:
+  - init: |
+      docker-compose pull
+  - command: |
+      docker-compose up
+
+ports:
+  - port: 8080
+    onOpen: ignore
+  - port: 5672
+    onOpen: ignore
+  - port: 15672
+    onOpen: ignore
+
+vscode:
+  extensions:
+    - ms-azuretools.vscode-docker
