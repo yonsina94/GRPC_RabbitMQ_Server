@@ -7,8 +7,7 @@ WORKDIR /usr/app
 
 # Install required packages
 RUN apt-get update && \
-    apt-get install -y -q --allow-unauthenticated \
-    fish
+    apt-get install -y fish
 
 # Switch to the gitpod user
 # USER gitpod
