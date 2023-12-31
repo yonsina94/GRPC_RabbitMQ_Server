@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package NftIdHub;
+
+option go_package = "github.com/yonsina94/GRPC_RabbitMQ_Server/pkg/pb";
+
+service NftIdHub {
+  rpc StartRegistration(StartRegistrationRequest) returns (StartRegistrationResponse);
+  rpc FinishRegistration(FinishRegistrationRequest) returns (FinishRegistrationResponse);
+}
+
+message StartRegistrationRequest {
+  string email = 1;
+}
+
+message StartRegistrationResponse {
+    PublicKey publicKey = 1;
+}
+
+message FinishRegistrationRequest {
+  string email = 1;
+  string id = 2;
+  string rawId = 3;
+  string type = 4;
+  repeated string transports = 5;
+  AttestationResponse response = 6;
+}
+
+message AttestationResponse {
+  string attestationObject = 1;
+  string clientDataJSON = 2;
+}
+
+message FinishRegistrationResponse {
+  string status = 1;
+}
+
+message PublicKey {
+  string challenge = 1;
+  RelyingParty rp = 2;
+  User user = 3;
+  repeated PubKeyCredParams pubKeyCredParams = 4;
+  AuthenticatorSelection authenticatorSelection = 5;
+  int32 timeout = 6;
+  string attestation = 7;
+}
+
+message RelyingParty {
+  string name = 1;
+  string id = 2;
+}
+
+message User {
+  string name = 1;
+  string displayName = 2;
+  string id = 3;
+}
+
+message PubKeyCredParams {
+  string type = 1;
+  int32 alg = 2;
+}
+
+message AuthenticatorSelection {
+  string userVerification = 1;
+  string authenticatorAttachment = 2;
+}

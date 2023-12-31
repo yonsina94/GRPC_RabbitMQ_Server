@@ -1,6 +1,8 @@
 module github.com/yonsina94/GRPC_RabbitMQ_Server
 
-go 1.19
+go 1.21
+
+toolchain go1.21.5
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
